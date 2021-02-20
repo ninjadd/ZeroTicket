@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = Hash::make('6891ninja');
         $user->remember_token = Str::random(10);
+        $user->role_id = 1;
+        
         $user->save();
 
         User::factory()->count(100)->create();
