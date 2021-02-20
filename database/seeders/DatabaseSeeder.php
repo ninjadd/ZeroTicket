@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             DepartmentSeeder::class,
             ThreadSeeder::class,
+            ReplySeeder::class,
         ]);
     }
 }
