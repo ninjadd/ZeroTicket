@@ -41,7 +41,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'due_date' => 'datetime',
-        'is_read' => 'datetime'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tickets() {
+        return $this->hasMany(Ticket::class);
+    }
 }
