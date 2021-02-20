@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PrioritySeeder::class,
             CategorySeeder::class,
             DepartmentSeeder::class,
+            ThreadSeeder::class,
         ]);
     }
 }

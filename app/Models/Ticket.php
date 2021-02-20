@@ -97,4 +97,11 @@ class Ticket extends Model
         return $this->belongsTo(Department::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
 }
