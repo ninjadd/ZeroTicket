@@ -76,4 +76,18 @@ class Ticket extends Model
         return $this->belongsTo(Status::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function priority() {
+        return $this->belongsTo(Priority::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+
 }

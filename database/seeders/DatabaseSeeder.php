@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             TicketSeeder::class,
             StatusSeeder::class,
             PrioritySeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }
