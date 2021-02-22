@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Name</th>
@@ -28,11 +28,7 @@
                         <tbody>
 
                           @foreach($users->load('role') as $user)
-                            @if($loop->even)
-                                <tr class="table-active">
-                            @else
                                 <tr>
-                            @endif
                                     <th scope="row">{{ $user->name }}</th>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ ucfirst($user->role->type) }}</td>

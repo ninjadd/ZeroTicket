@@ -17,12 +17,12 @@ class TicketController extends Controller
     {
 
         if ($user) {
-            $tickets = Ticket::ofUser($user->id)->paginate(15);
+            $tickets = Ticket::ofUser($user->id)->paginate(25);
         } else {
-            $tickets = Ticket::paginate(15);
+            $tickets = Ticket::paginate(25);
         }
 
-        return $tickets;
+        return view('ticket.index', compact('tickets'));
 
     }
 
