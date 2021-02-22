@@ -2,12 +2,17 @@
 
 @section('content')
 <div class="container">
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">User Management</h4>
-                    <p><a href="#" type="button" class="btn btn-secondary">New</a></p>
+                    <p><a href="{{ route('management.create') }}" type="button" class="btn btn-secondary">New</a></p>
                 </div>
 
                 <div class="card-body">

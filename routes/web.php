@@ -25,4 +25,8 @@ Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
 
     Route::get('management',[App\Http\Controllers\UserManagementContrller::class, 'index'])->name('management.index');
 
+    Route::get('management/create',[App\Http\Controllers\UserManagementContrller::class, 'create'])->name('management.create');
+
+    Route::post('management',[App\Http\Controllers\UserManagementContrller::class, 'store'])->name('management.store');
+
 });
