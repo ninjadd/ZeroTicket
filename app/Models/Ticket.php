@@ -51,57 +51,70 @@ class Ticket extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function receiver() {
+    public function receiver()
+    {
         return $this->hasOne(User::class, 'id', 'receiver_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function assigned() {
+    public function assigned()
+    {
         return $this->hasOne(User::class, 'id', 'assigned_id');
     }
 
      /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function status() {
+    public function status()
+    {
         return $this->belongsTo(Status::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function priority() {
+    public function priority()
+    {
         return $this->belongsTo(Priority::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function department() {
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function uploads() {
+    public function uploads()
+    {
         return $this->morphMany(Upload::class, 'uploadable');
+    }
+
+    public function scopeOfUser($query, $user_id)
+    {
+        return $query->where('user_id', $user_id);
     }
 
 }

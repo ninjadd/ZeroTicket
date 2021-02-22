@@ -16,7 +16,8 @@
                     @can('manage', Auth::user())
                         <p><a class="btn btn-secondary" href="{{ route('management.index') }}">User Management</a></p>
                     @endcan
-                    <p><a class="btn btn-secondary" href="#">Your Tickets ({{ $ticket_count }})</a></p>
+                    <p><a class="btn btn-secondary" href="{{ route('tickets.index', Auth::user()->id) }}">{{ Auth::user()->name }}'s Tickets ({{ $ticket_count }})</a></p>
+                    <p><a class="btn btn-secondary" href="{{ route('tickets.index') }}">All Tickets</a></p>
                 </div>
             </div>
         </div>

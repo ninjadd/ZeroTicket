@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -12,9 +13,17 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user = null)
     {
-        //
+
+        if ($user) {
+            $tickets = Ticket::ofUser($user->id)->paginate(15);
+        } else {
+            $tickets = Ticket::paginate(15);
+        }
+
+        return $tickets;
+
     }
 
     /**

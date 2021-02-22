@@ -22,6 +22,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::prefix('tickets')->middleware('auth')->group(function () {
+
+    Route::get('/{user?}', [App\Http\Controllers\TicketController::class, 'index'])->name('tickets.index');
+
+
+});
+
 Route::middleware(['auth', 'can:manage,App\Models\User'])->group(function () {
 
     Route::get('management', [App\Http\Controllers\UserManagementContrller::class, 'index'])->name('management.index');
