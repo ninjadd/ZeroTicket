@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\CreateUserEvent;
+use App\Events\UpdateUserEvent;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class CreateUserListener
+class UpdateUserListener
 {
     /**
      * Create the event listener.
@@ -22,14 +22,14 @@ class CreateUserListener
     /**
      * Handle the event.
      *
-     * @param  CreateUserEvent  $event
+     * @param  UpdateUserEvent  $event
      * @return void
      */
-    public function handle(CreateUserEvent $event)
+    public function handle(UpdateUserEvent $event)
     {
         $role = Role::where('type', $event->request->role)->first();
+        $user = User::find($event->user->id);
 
-        $user = new User();
         $user->name = $event->request->name;
         $user->email = $event->request->email;
         $user->password = Hash::make($event->request->password);

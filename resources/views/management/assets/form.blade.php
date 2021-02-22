@@ -3,7 +3,7 @@
     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
     <div class="col-md-6">
-        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name ?? old('name') }}" required autocomplete="name" autofocus>
 
         @error('name')
             <span class="invalid-feedback" role="alert">
@@ -17,7 +17,7 @@
     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
     <div class="col-md-6">
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email ?? old('email') }}" required autocomplete="email">
 
         @error('email')
             <span class="invalid-feedback" role="alert">
@@ -53,24 +53,14 @@
     <label for="user-role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
     <div class="col-md-6">
+        @foreach($roles as $role)
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="user-role1" required value="admin">
-            <label class="form-check-label" for="user-role1">
-              Admin
+            <input class="form-check-input" type="radio" name="role" id="user-role{{ $loop->iteration }}" required value="{{ $role->type }}" {{ ($role->id == $user->role_id) ?? 'checked' }}>
+            <label class="form-check-label" for="user-role{{ $loop->iteration }}">
+              {{ ucfirst($role->type) }}
             </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="user-role2" required value="staff">
-            <label class="form-check-label" for="user-role2">
-              Staff
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="user-role3" required value="client">
-            <label class="form-check-label" for="user-role3">
-              Client
-            </label>
-          </div>
+        </div>
+        @endforeach
     </div>
     @error('role')
         <span class="invalid-feedback" role="alert">

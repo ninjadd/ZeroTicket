@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\CreateUserEvent;
+use App\Events\UpdateUserEvent;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class UserManagementContrller extends Controller
@@ -27,7 +29,9 @@ class UserManagementContrller extends Controller
      */
     public function create()
     {
-        return view('management.create');
+        $roles = Role::all();
+
+        return view('management.create', compact('roles'));
     }
 
     /**
@@ -47,18 +51,7 @@ class UserManagementContrller extends Controller
 
         event(new CreateUserEvent($request));
 
-        return $request;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
+        return redirect(route('management.index'));
     }
 
     /**
@@ -69,7 +62,9 @@ class UserManagementContrller extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+
+        return  view('management.edit', compact(['user', 'roles']));
     }
 
     /**
@@ -81,7 +76,16 @@ class UserManagementContrller extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string'],
+        ]);
+
+        event( new UpdateUserEvent($request, $user));
+
+        return redirect(route('management.index'));
     }
 
     /**
@@ -92,6 +96,8 @@ class UserManagementContrller extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect(route('management.index'));
     }
 }

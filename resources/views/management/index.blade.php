@@ -35,12 +35,16 @@
                             @endif
                                     <th scope="row">{{ $user->name }}</th>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role->type }}</td>
+                                    <td>{{ ucfirst($user->role->type) }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="#" type="button" class="btn btn-secondary btn-sm">Edit</a>
-                                            <button type="button" class="btn btn-secondary btn-sm">Delete</button>
-                                          </div>
+                                            <form action="{{ route('management.destroy', $user->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('management.edit', $user->id) }}" type="button" class="btn btn-secondary btn-sm">Edit</a>
+                                                <button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                           @endforeach
