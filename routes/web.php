@@ -24,7 +24,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('tickets')->middleware('auth')->group(function () {
 
-    Route::get('/{user?}', [App\Http\Controllers\TicketController::class, 'index'])->name('tickets.index');
+
+    Route::get('', [App\Http\Controllers\TicketController::class, 'index'])->middleware('can:viewAny,App\Models\Ticket')->name('tickets.index');
+
+    Route::get('user/{user}', [App\Http\Controllers\TicketController::class, 'userIndex'])->name('tickets.userIndex');
 
 
 });

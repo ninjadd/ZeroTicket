@@ -17,7 +17,7 @@
 
                 <div class="card-body">
 
-                    <table class="table table-hover table-bordered table-striped table-sm">
+                    <table name="table" class="table table-hover table-bordered table-striped table-sm">
                         <thead>
                           <tr>
                             <th>ID#</th>

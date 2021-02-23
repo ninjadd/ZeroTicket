@@ -22,9 +22,9 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 100),
-            'receiver_id' => $this->faker->numberBetween(1, 100),
-            'assigned_id' => $this->faker->numberBetween(0, 100),
+            'user_id' => $this->faker->numberBetween(1, 101),
+            'receiver_id' => $this->faker->numberBetween(1, 101),
+            'assigned_id' => $this->faker->numberBetween(1, 101),
             'status_id' => $this->faker->numberBetween(1, 5),
             'priority_id' => $this->faker->numberBetween(1, 5),
             'category_id' => $this->faker->numberBetween(1, 5),

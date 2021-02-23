@@ -8,19 +8,22 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+
+    public function userIndex(User $user)
+    {
+        $tickets = Ticket::ofUser($user->id)->paginate(25);
+
+        return view('ticket.index', compact('tickets'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user = null)
+    public function index()
     {
-
-        if ($user) {
-            $tickets = Ticket::ofUser($user->id)->paginate(25);
-        } else {
-            $tickets = Ticket::paginate(25);
-        }
+        $tickets = Ticket::paginate(25);
 
         return view('ticket.index', compact('tickets'));
 

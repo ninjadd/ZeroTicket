@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class TicketPolicy
 {
@@ -18,7 +19,9 @@ class TicketPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role_id < 3
+            ? Response::allow()
+            : Response::deny('You do not belong here!');
     }
 
     /**
