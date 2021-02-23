@@ -2,17 +2,13 @@
 
 @section('content')
 <div class="container-fluid">
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
     <div class="row justify-content-center">
         <div class="col-xl-12">
+            @include('shared.session')
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Tickets</h4>
-                    <p><a href="#" type="button" class="btn btn-secondary">New</a></p>
+                    <p><a href="{{ route('tickets.create') }}" type="button" class="btn btn-secondary">New</a></p>
                 </div>
 
                 <div class="card-body">

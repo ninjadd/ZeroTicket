@@ -55,7 +55,11 @@
     <div class="col-md-6">
         @foreach($roles as $role)
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="user-role{{ $loop->iteration }}" required value="{{ $role->type }}" {{ ($role->id == $user->role_id) ?? 'checked' }}>
+            @isset($user->role_id)
+            <input class="form-check-input" type="radio" name="role" id="user-role{{ $loop->iteration }}" required {{ $role->id == $user->role_id ? 'checked' : '' }} value="{{ $role->type }}">
+            @else
+            <input class="form-check-input" type="radio" name="role" id="user-role{{ $loop->iteration }}" required value="{{ $role->type }}">
+            @endisset
             <label class="form-check-label" for="user-role{{ $loop->iteration }}">
               {{ ucfirst($role->type) }}
             </label>

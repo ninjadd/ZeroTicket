@@ -51,7 +51,7 @@ class UserManagementContrller extends Controller
 
         event(new CreateUserEvent($request));
 
-        return redirect(route('management.index'));
+        return redirect(route('management.index'))->with('status_success', '<strong>Congrats!</strong> You\'ve created a new user');
     }
 
     /**
@@ -85,7 +85,7 @@ class UserManagementContrller extends Controller
 
         event( new UpdateUserEvent($request, $user));
 
-        return redirect(route('management.index'));
+        return redirect(route('management.index'))->with('status_success', '<strong>Congrats!</strong> You\'ve updated a user');
     }
 
     /**

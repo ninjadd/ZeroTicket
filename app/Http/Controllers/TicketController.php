@@ -36,7 +36,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        // TODO: ticket form
     }
 
     /**
